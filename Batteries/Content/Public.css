@@ -1,0 +1,35 @@
+﻿@font-face {
+  font-family: 'SF Compact Display';
+  src: url('../fonts/SF-Compact-Display-Ultralight.otf');
+  /*src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');*/
+}
+
+body {
+    height: auto;
+    /*font-family: "SF Compact Display";
+    -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;*/
+    
+    background-image: linear-gradient(to right, #3499CC, #5FC5C0);
+    /*letter-spacing: 0.26em;*/
+    /*letter-spacing: 0.26em;*/
+    /*font-weight: bold;*/
+}
+
+.login-box-body{
+    background-color: transparent;
+    /*color: #fff;*/
+    color: #e2e2e2;
+}
+.loginBtn{
+    background-color: #fff;
+}
+a{
+    color: #e2e2e2;
+}
+a:hover{
+    color: #fff;
+}
+.text-white{
+    color: white;
+}

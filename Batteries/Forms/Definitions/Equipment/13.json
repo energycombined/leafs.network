@@ -1,0 +1,146 @@
+﻿{
+    "data": {
+    },
+    "schema": {
+        "type": "object",
+        "properties": {
+            "form_action": {
+                "type": "string",
+                "hidden": true
+            },
+            "form_element": {
+                "type": "string",
+                "hidden": true
+            },
+            "settingsId": {
+                "type": "integer",
+                "hidden": true,
+                "default": 0
+            },
+            "fkExperimentProcess": {
+                "title": "Experiment Process Id",
+                "type": "integer",
+                "hidden": true,
+                "default": 0
+            },
+            "fkBatchProcess": {
+                "title": "Batch Process Id",
+                "type": "integer",
+                "hidden": true,
+                "default": 0
+            },
+            "label": {
+                "title": "Personal label",
+                "type": "string"
+            },
+            "fkEquipmentModel": {
+                "title": "Equipment Model",
+                "type": "integer"
+            },
+            "ballPowderRatio": {
+                "title": "Ball Powder Ratio",
+                "type": "number"
+            },
+            "millingSpeed": {
+                "title": "Milling Speed (rpm)",
+                "type": "number"
+            },
+            "millingTime": {
+                "title": "Milling Time (minutes)",
+                "type": "number"
+            },
+            "restingTime": {
+                "title": "Resting Time (minutes)",
+                "type": "number"
+            },
+            "loopCount": {
+                "title": "Loop Count",
+                "type": "number"
+            },
+            "cupVolume": {
+                "title": "Cup Volume",
+                "type": "number"
+            },
+            "cupMaterial": {
+                "title": "Cup Material",
+                "type": "string"
+            },
+            "ballsSize": {
+                "title": "Balls Size (mm diameter)",
+                "type": "number"
+            },
+            "ballsMaterial": {
+                "title": "Balls Material",
+                "type": "string"
+            },
+            "amountOfBalls": {
+                "title": "Amount Of Balls",
+                "type": "number"
+            },
+            "comment": {
+                "title": "Comments",
+                "type": "string"
+            }
+        }
+    },
+    "options": {
+        "fields": {
+            "form_action": {
+                "type": "hidden"
+            },
+            "form_element": {
+                "type": "hidden"
+            },
+            "settingsId": {
+                "readonly": true
+            },
+            "fkExperimentProcess": {
+                "readonly": true
+            },
+            "fkBatchProcess": {
+                "readonly": true
+            },
+            "fkEquipmentModel": {
+                "type": "select",
+                "dataSource": "/DataSources/EquipmentModels.ashx?fresh=123&equipmentId=13",
+                "noneLabel": "-- Select --",
+                "validate": false
+            },
+            "ballPowderRatio": {
+            },
+            "millingSpeed": {
+            },
+            "millingTime": {
+            },
+            "restingTime": {
+            },
+            "loopCount": {
+            },
+            "cupVolume": {
+            },
+            "cupMaterial": {
+                "type": "text"
+            },
+            "ballsSize": {
+            },
+            "ballsMaterial": {
+                "type": "text"
+            },
+            "amountOfBalls": {
+            },
+            "comment": {
+                "type": "textarea"
+            }
+        },
+        "form": {
+            "attributes": {
+                "method": "post",
+                "action": "PostData.asmx/Submit"
+            }
+        }
+    },
+    "view": {
+        "parent": "bootstrap-edit",
+        "displayReadonly": false
+    }
+}

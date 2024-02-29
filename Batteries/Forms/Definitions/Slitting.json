@@ -1,0 +1,87 @@
+﻿{
+    "data": {
+    },
+    "schema": {
+        "type": "object",
+        "properties": {
+            "form_action": {
+                "type": "string",
+                "hidden": true
+            },
+            "form_element": {
+                "type": "string",
+                "hidden": true
+            },
+            "phaseInversionId": {
+                "type": "integer",
+                "hidden": true,
+                "default": 0
+            },
+            "fkBatchProcess": {
+                "title": "Batch Process Id",
+                "type": "integer",
+                "hidden": true,
+                "default": 0
+            },            
+            "label": {
+                "title": "Personal label",
+                "type": "string"
+            },
+            "fkEquipment": {
+                "title": "Equipment",
+                "type": "integer"
+            },
+            "width": {
+                "title": "Width (mm)",
+                "type": "number"
+            },
+            "length": {
+                "title": "Length (mm)",
+                "type": "number"
+            },
+            "comments": {
+                "title": "Comments",
+                "type": "string"
+            }
+        }
+    },
+    "options": {
+        "fields": {
+            "form_action": {
+                "type": "hidden"
+            },
+            "form_element": {
+                "type": "hidden"
+            },
+            "phaseInversionId": {
+                "readonly": true
+            },
+            "fkBatchProcess": {
+                "readonly": true
+            },
+            "fkEquipment": {
+                "type": "select",
+                "dataSource": "/DataSources/Equipment.ashx?fresh=123&processType=6",
+                "noneLabel": "-- Select --",
+                "validate": false
+            },
+            "width": {
+            },
+            "length": {
+            },
+            "comments": {
+                "type": "textarea"
+            }
+        },
+        "form": {
+            "attributes": {
+                "method": "post",
+                "action": "PostData.asmx/Submit"
+            }
+        }
+    },
+    "view": {
+        "parent": "bootstrap-edit",
+        "displayReadonly": false
+    }
+}

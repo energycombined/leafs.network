@@ -1,0 +1,748 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Batteries.SiteMaster" %>
+
+<%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
+<%@ Import Namespace="Batteries.Helpers" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LEAFS - <%: Page.Title%></title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr")%>
+    </asp:PlaceHolder>
+    <%--<webopt:BundleReference runat="server" Path="~/Content/css" />--%>
+    <link href="<%= ResolveUrl("~/favicon.ico") %>" rel="shortcut icon" type="image/x-icon" />
+    <link href="<%= ResolveUrl("~/Content/bootstrap.min.css") %>" rel="stylesheet" />
+    <link href="<%= ResolveUrl("~/Content/font-awesome.min.css") %>" rel="stylesheet" />
+    <link href="<%= ResolveUrl("~/Content/ionicons.min.css") %>" rel="stylesheet" />
+    <link href="<%= ResolveUrl("~/AdminLTE/plugins/select2/select2.min.css") %>" rel="stylesheet" />
+    <link href="<%= ResolveUrl("~/AdminLTE/plugins/pace/pace.min.css") %>" rel="stylesheet" />
+    <link href="<%= ResolveUrl("~/AdminLTE/plugins/iCheck/all.css") %>" rel="stylesheet" />
+    <link href="<%= ResolveUrl("~/AdminLTE/dist/css/AdminLTE.min.css") %>" rel="stylesheet" />
+    <link href="<%= ResolveUrl("~/AdminLTE/dist/css/skins/skin-blue.min.css") %>" rel="stylesheet" />
+    <link href="<%= ResolveUrl("~/Content/Site.css") %>" rel="stylesheet" />
+    <link href="<%= ResolveUrl("~/Content/animate.min.css")%>" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+
+    <!-- dependencies (jquery, handlebars and bootstrap) -->
+    <%--<script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>--%>
+
+    <%--<link type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" />--%>
+    <%--<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>--%>
+
+    <!-- alpaca -->
+    <link type="text/css" href="//code.cloudcms.com/alpaca/1.5.23/bootstrap/alpaca.min.css" rel="stylesheet" />
+    <%--<link type="text/css" href="<%= ResolveUrl("~/Content/alpaca/alpaca.min.css")%>" rel="stylesheet" />--%>
+    <link href="<%= ResolveUrl("~/Content/bootstrap-datepicker/bootstrap-datepicker.min.css")%>" rel="stylesheet" />
+
+
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini fixed">
+    <div class="wrapper">
+        <form runat="server" enctype="multipart/form-data">
+            <asp:ScriptManager runat="server">
+                <Scripts>
+                    <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                    <%--Framework Scripts--%>
+                    <asp:ScriptReference Name="MsAjaxBundle" />
+                    <asp:ScriptReference Name="jquery" />
+                    <asp:ScriptReference Name="bootstrap" />
+                    <asp:ScriptReference Name="respond" />
+                    <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                    <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                    <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                    <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                    <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                    <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                    <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                    <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                    <asp:ScriptReference Name="WebFormsBundle" />
+                    <%--Site Scripts--%>
+                </Scripts>
+            </asp:ScriptManager>
+            <script src="<%= ResolveUrl("~/Scripts/bootstrap-datepicker.js")%>"></script>
+            <script src="<%= ResolveUrl("~/Scripts/bootstrap-notify.min.js")%>"></script>
+            <script src="<%= ResolveUrl("~/Scripts/bootbox.min.js")%>"></script>
+
+            <script type="text/javascript">
+                /*********** Igor D. Pace OPTIONS *********/
+                paceOptions = {
+                    ajax: {
+                        trackMethods: ['GET', 'POST', 'DELETE', 'PUT', 'PATCH']
+                    }
+                }
+
+                $(function () {
+
+                    //OZNACUVANJE NA AKTIVEN ELEMENT VO MENITO LEVO
+                    //var url = window.location.href;
+                    //var n = url.indexOf("#");
+                    //if (n != -1) {
+                    //    url = url.substring(0, n);
+                    //}
+                    //var element = $('ul.sidebar-menu a').filter(function () {
+                    //    return this.href.toLowerCase() == url.toLowerCase() || url.toLowerCase().indexOf(this.href.toLowerCase()) == 0;
+                    //}).parent().addClass('active').parent().addClass('menu-open').parent();
+                    //if (element.is('li')) {
+                    //    element.addClass('active');
+                    //}
+
+                    /** add active class and stay opened when selected */
+                    var url = window.location.href;
+                    var n = url.indexOf("#");
+                    if (n != -1) {
+                        url = url.substring(0, n);
+                    }
+
+                    // for sidebar menu entirely but not cover treeview
+                    $('ul.sidebar-menu a').filter(function () {
+                        return this.href == url;
+                    }).parent().addClass('active');
+
+                    // for treeview
+                    $('ul.treeview-menu a').filter(function () {
+                        return this.href == url;
+                    }).parentsUntil(".sidebar-menu > .treeview-menu").addClass('active');
+
+                });
+            </script>
+            <script src="<%= ResolveUrl("~/AdminLTE/plugins/fastclick/fastclick.min.js")%>"></script>
+            <script src="<%= ResolveUrl("~/AdminLTE/plugins/moment/moment.min.js")%>"></script>
+            <script src="<%= ResolveUrl("~/AdminLTE/plugins/pace/pace.min.js")%>"></script>
+            <script src="<%= ResolveUrl("~/AdminLTE/plugins/iCheck/icheck.min.js")%>"></script>
+            <script src="<%= ResolveUrl("~/AdminLTE/plugins/slimScroll/jquery.slimscroll.min.js")%>"></script>
+            <script src="<%= ResolveUrl("~/AdminLTE/plugins/select2/select2.full.min.js")%>"></script>
+            <script src="<%= ResolveUrl("~/AdminLTE/dist/js/adminlte.js")%>"></script>
+
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+            <script type="text/javascript" src="https://code.cloudcms.com/alpaca/1.5.23/bootstrap/alpaca.min.js"></script>
+            <%--<script type="text/javascript" src="<%= ResolveUrl("~/Scripts/handlebars.js")%>"></script>--%>
+            <%--<script type="text/javascript" src="<%= ResolveUrl("~/Scripts/alpaca.min.js")%>"></script>--%>
+
+            <script>
+                function notify(message, type, url) {
+                    //type: info, warning, success, danger
+
+                    $.notify({
+                        // options
+                        //icon: 'glyphicon glyphicon-warning-sign',
+                        //title: 'Bootstrap notify',
+                        message: message,
+                        url: url,
+                        //target: '_blank'
+                    }, {
+                        // settings
+                        element: 'body',
+                        position: null,
+                        type: type,
+                        allow_dismiss: true,
+                        newest_on_top: false,
+                        showProgressbar: false,
+                        placement: {
+                            from: "top",
+                            align: "center"
+                        },
+                        offset: 40,
+                        spacing: 10,
+                        z_index: 1055,
+                        delay: 8000,
+                        timer: 50, //1000,
+                        url_target: '_self',
+                        mouse_over: null,
+                        animate: {
+                            enter: 'animated fadeInDown',
+                            exit: 'animated fadeOutUp'
+                        },
+                        onShow: null,
+                        onShown: null,
+                        onClose: null,
+                        onClosed: null,
+                        icon_type: 'class',
+                        template: '<div data-notify="container" class="col-xs-10 col-sm-5 alert alert-{0}" role="alert" style="text-align:center;">' +
+                            '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+                            '<span data-notify="icon"></span> ' +
+                            '<span data-notify="title">{1}</span> ' +
+                            '<span data-notify="message">{2}</span>' +
+                            '<div class="progress" data-notify="progressbar">' +
+                            '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                            '</div>' +
+                            '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                            '</div>'
+                    });
+                }
+
+
+                $(function () {
+                    <% if (Session["NotificationsList"] != null)
+                {
+                    foreach (Batteries.Helpers.Notify notification in Session["NotificationsList"] as List<Batteries.Helpers.Notify>)
+                    {
+                        Response.Write("notify('" + (System.Web.HttpUtility.HtmlEncode(notification.message)) + "', '" + notification.type + "', '" + notification.url + "');");
+                    }
+                    Session["NotificationsList"] = null;
+                }
+                    %>
+
+                    //Tab focus on select2 dropdowns
+                    $(document).on('focus', '.select2.select2-container', function (e) {
+                        // only open on original attempt - close focus event should not fire open
+                        if (e.originalEvent && $(this).find(".select2-selection--single").length > 0) {
+                            $(this).siblings('select').select2('open');
+                        }
+                    });
+
+                    //Always focus on first input element on page
+                    $(document).find('input[type=text],textarea,select').filter(':visible:enabled:first').focus();
+
+                });
+
+                $(function () {
+                    $(".center").center();
+                    $(window).resize(function () {
+                        $(".center").center();
+                    });
+                });
+
+                /* CENTER ELEMENTS IN THE SCREEN */
+                jQuery.fn.center = function () {
+                    this.css("position", "absolute");
+                    this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) +
+                        $(window).scrollTop()) - 30 + "px");
+                    this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) +
+                        $(window).scrollLeft()) + "px");
+                    return this;
+                }
+
+            </script>
+            <script>
+                var entityMap = {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#39;',
+                    '/': '&#x2F;',
+                    '`': '&#x60;',
+                    '=': '&#x3D;'
+                };
+
+                function escapeHtml(string) {
+                    return String(string).replace(/[&<>"'`=\/]/g, function (s) {
+                        return entityMap[s];
+                    });
+                }
+            </script>
+
+            <header class="main-header">
+
+                <!-- Logo -->
+                <a href="<%=ResolveUrl("~/Experiments/Default")%>" class="logo">
+                    <!-- mini logo for sidebar mini 50x50 pixels -->
+                    <span class="logo-mini">
+                        <img height="45px" src="<%= ResolveUrl("~/img/logo_white_notext.png") %>" />
+                        <%--<img src="<%= ResolveUrl("~/img/logo_small.png") %>" />--%>
+                        <%--LEAFS--%>
+                    </span>
+                    <!-- logo for regular state and mobile devices -->
+                    <span class="logo-lg">
+                        <img class="rotate_01" height="45px" src="<%= ResolveUrl("~/img/logo_white_notext.png") %>" />
+                        <%--<img src="<%= ResolveUrl("~/img/logo_big.png") %>" />--%>
+                        <%--<strong>ECF</strong>--%>
+                    </span>
+                </a>
+
+                <!-- Header Navbar -->
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <!-- Sidebar toggle button-->
+                    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                    </a>
+                    <!-- Navbar Right Menu -->
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <%--    <li class="dropdown">
+                                   <a class="headline text-center" style="font-weight:800; color:greenyellow;" id="time">
+                                        <!-- Time auto generated by js -->
+                                    </a>
+                            </li>--%>
+                            <%--<li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="<%=ResolveUrl("~/Materials/") %>">Materials</a></li>
+                                    <li><a href="#">Stock</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Manage <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="<%=ResolveUrl("~/Admin/UsersPanel/") %>">Users list</a></li>
+                                </ul>
+                            </li>--%>
+
+
+                            <!-- Messages: style can be found in dropdown.less-->
+                            <% /* 
+<li class="dropdown messages-menu">
+<!-- Menu toggle button -->
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+<i class="fa fa-envelope-o"></i>
+<span class="label label-success">4</span>
+</a>
+<ul class="dropdown-menu">
+<li class="header">You have 4 messages</li>
+<li>
+<!-- inner menu: contains the messages -->
+<ul class="menu">
+<li>
+<!-- start message -->
+<a href="#">
+<div class="pull-left">
+<!-- User Image -->
+<img src="img/user_avatar.jpg" class="img-circle" alt="User Image">
+</div>
+<!-- Message title and timestamp -->
+<h4>Support Team
+<small><i class="fa fa-clock-o"></i>5 mins</small>
+</h4>
+<!-- The message -->
+<p>Why not buy a new awesome theme?</p>
+</a>
+</li>
+<!-- end message -->
+</ul>
+<!-- /.menu -->
+</li>
+<li class="footer"><a href="#">See All Messages</a></li>
+</ul>
+</li>
+<!-- /.messages-menu -->
+
+<!-- Notifications Menu -->
+<li class="dropdown notifications-menu">
+<!-- Menu toggle button -->
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+<i class="fa fa-bell-o"></i>
+<span class="label label-warning">10</span>
+</a>
+<ul class="dropdown-menu">
+<li class="header">You have 10 notifications</li>
+<li>
+<!-- Inner Menu: contains the notifications -->
+<ul class="menu">
+<li>
+<!-- start notification -->
+<a href="#">
+<i class="fa fa-users text-aqua"></i>5 new members joined today
+</a>
+</li>
+<!-- end notification -->
+</ul>
+</li>
+<li class="footer"><a href="#">View all</a></li>
+</ul>
+</li>
+<!-- Tasks Menu -->
+<li class="dropdown tasks-menu">
+<!-- Menu Toggle Button -->
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+<i class="fa fa-flag-o"></i>
+<span class="label label-danger">9</span>
+</a>
+<ul class="dropdown-menu">
+<li class="header">You have 9 tasks</li>
+<li>
+<!-- Inner menu: contains the tasks -->
+<ul class="menu">
+<li>
+<!-- Task item -->
+<a href="#">
+<!-- Task title and progress text -->
+<h3>Design some buttons
+<small class="pull-right">20%</small>
+</h3>
+<!-- The progress bar -->
+<div class="progress xs">
+<!-- Change the css width attribute to simulate progress -->
+<div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+<span class="sr-only">20% Complete</span>
+</div>
+</div>
+</a>
+</li>
+<!-- end task item -->
+</ul>
+</li>
+<li class="footer">
+<a href="#">View all tasks</a>
+</li>
+</ul>
+</li>
+*/%>
+                            <!-- User Account Menu -->
+                            <li class="dropdown user user-menu">
+                                <!-- Menu Toggle Button -->
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <!-- The user image in the navbar-->
+                                    <%--<img src="<%= ResolveClientUrl("~/AdminLTE/dist/img/user_default.png")%>" class="user-image" alt="User Image">--%>
+                                    <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                    <span class="hidden-xs"><%= varUserFullName%></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <!-- The user image in the menu -->
+                                    <li class="user-header">
+                                        <img src="<%= ResolveClientUrl("~/AdminLTE/dist/img/user_default.png")%>" class="img-circle" alt="User Image">
+                                        <p>
+                                            <%--<%: Context.User.Identity.Name%>--%>
+                                            <%= varUserFullName%>
+                                            <small><%= UserHelper.GetCurrentUser().researchGroupAcronym + " - " + UserHelper.GetCurrentUser().researchGroupName %></small>
+                                        </p>
+                                    </li>
+                                    <!-- Menu Footer-->
+                                    <li class="user-footer">
+                                        <div class="pull-left">
+                                            <%--<a href="<%=ResolveUrl("~/Account/Manage")%>" class="btn btn-default btn-flat">Change password</a>--%>
+                                            <a href="<%=ResolveUrl("~/Account/EditProfile")%>" class="btn btn-default btn-flat">Edit profile</a>
+                                        </div>
+                                        <div class="pull-right">
+                                            <asp:LoginStatus runat="server" CssClass="btn btn-default btn-flat" LogoutAction="Redirect" LogoutText="Logout" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+                                            <%--<a href="<%= ResolveUrl("~/Account/Logout") %>" class="btn btn-default btn-flat">Logout</a>--%>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                                <!-- Control Sidebar Toggle Button -->
+                                <% /*
+<li>
+<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+</li>
+*/ %>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="main-sidebar">
+
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <!-- search form (Optional) -->
+                    <%--<div class="sidebar-form">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>--%>
+                    <!-- /.search form -->
+
+                    <!-- Sidebar Menu -->
+                    <ul class="sidebar-menu" data-widget="tree">
+                        <li class="header">NAVIGATION</li>
+                        <% if (Batteries.Helpers.UserHelper.IsAdmin())
+                            { %>
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-user"></i><span>Users</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="<%=ResolveUrl("~/Admin/UsersPanel/Insert")%>"><i class="fa fa-user-plus"></i><span>New</span></a></li>
+                                <li><a href="<%=ResolveUrl("~/Admin/UsersPanel/")%>"><i class="fa fa-list"></i><span>List</span></a></li>
+                            </ul>
+                        </li>
+                        <% } %>
+
+
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-group"></i><span>Research groups</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <% if (UserHelper.IsAdmin())
+                                    {%>
+                                <li><a href="<%=ResolveUrl("~/ResearchGroups/Insert")%>"><i class="fa fa-plus-circle"></i><span>New</span></a></li>
+                                <% } %>
+                                <li><a href="<%=ResolveUrl("~/ResearchGroups/")%>"><i class="fa fa-list"></i><span>List</span></a></li>
+                                <%--<li><a href="<%= ResolveUrl("~/ResearchGroups/")%>"><i class="fa fa-circle"></i><span>Research groups</span></a></li>--%>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-edit"></i><span>Projects</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="<%= ResolveUrl("~/Projects/")%>"><i class="fa fa-list"></i><span>Projects list</span></a></li>
+                                <li><a href="<%= ResolveUrl("~/Projects/Insert")%>"><i class="fa fa-circle"></i><span>New Project</span></a></li>
+                                <%--<li><a href="<%= ResolveUrl("~/Projects/AddResearchGroupToProject")%>"><i class="fa fa-circle"></i><span>New RG Project</span></a></li>--%>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-flask"></i><span>Experiments</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="<%= ResolveUrl("~/Experiments/Insert")%>"><i class="fa fa-circle"></i><span>New Experiment</span></a></li>
+                                <li><a href="<%= ResolveUrl("~/Experiments/Default")%>"><i class="fa fa-list"></i><span>Experiments list</span></a></li>
+                                <li><a href="<%= ResolveUrl("~/Experiments/Unfinished")%>"><i class="fa fa-list"></i><span>Unfinished Experiments list</span></a></li>
+                                <%-- <li><a href="<%= ResolveUrl("~/Experiments/Shared/Default")%>"><i class="fa fa-list"></i><span>Shared Experiments list</span></a></li>--%>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-circle-o"></i><span>Materials</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="<%= ResolveUrl("~/Materials/Insert")%>"><i class="fa fa-circle"></i><span>New Material</span></a></li>
+                                <li><a href="<%= ResolveUrl("~/Materials/")%>"><i class="fa fa-list"></i><span>List</span></a></li>
+                                <li><a href="<%= ResolveUrl("~/Stock/Materials/")%>"><i class="fa fa-list"></i><span>Stock</span></a></li>
+                                <%-- 
+                                <% if (Web.Helpers.UserHelper.IsSuperAdmin())
+                                   { %><li><a href="<%= ResolveUrl("~/FilesLibrary/PrivateList") %>"><i class="fa fa-list"></i><span>Private List (SuperAdmin only)</span></a></li>
+                                <% } %>
+                                --%>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-circle-o"></i><span>Batches</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="<%= ResolveUrl("~/Batches/Insert")%>"><i class="fa fa-circle"></i><span>New Batch</span></a></li>
+                                <li><a href="<%= ResolveUrl("~/Batches/")%>"><i class="fa fa-list"></i><span>List</span></a></li>
+                                <li><a href="<%= ResolveUrl("~/Batches/Unfinished")%>"><i class="fa fa-list"></i><span>Unfinished Batches list</span></a></li>
+                                <li><a href="<%= ResolveUrl("~/Stock/Batches/")%>"><i class="fa fa-list"></i><span>Stock</span></a></li>
+                                <%-- <li><a href="<%= ResolveUrl("~/Batches/Shared/Default")%>"><i class="fa fa-list"></i><span>Shared Batches list</span></a></li>--%>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-circle-o"></i><span>Process Types</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="<%= ResolveUrl("~/ProcessTypes/")%>"><i class="fa fa-list"></i><span>Process Types list</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-stethoscope"></i><span>Test Groups</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="<%= ResolveUrl("~/TestGroups/")%>"><i class="fa fa-list"></i><span>Test Groups list</span></a></li>
+                                <li><a href="<%= ResolveUrl("~/TestGroups/Insert")%>"><i class="fa fa-circle"></i><span>New Test Group</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-cog"></i><span>Manage</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="<%= ResolveUrl("~/MaterialTypes/")%>"><i class="fa fa-circle"></i><span>Material types</span></a></li>
+                                <li><a href="<%= ResolveUrl("~/MaterialFunctions/")%>"><i class="fa fa-circle"></i><span>Material functions</span></a></li>
+                                <li><a href="<%= ResolveUrl("~/MeasurementUnits/")%>"><i class="fa fa-thermometer-empty"></i><span>Measurement units</span></a></li>
+                                <li><a href="<%= ResolveUrl("~/StoredInTypes/")%>"><i class="fa fa-circle"></i><span>Storage atmosphere</span></a></li>
+                                <%--<li><a href="<%= ResolveUrl("~/EquipmentPanel/")%>"><i class="fa fa-cogs"></i><span>Equipment</span></a></li>--%>
+                                <%--<li><a href="<%= ResolveUrl("~/EquipmentPanel/EquipmentModels")%>"><i class="fa fa-cogs"></i><span>Equipment Models</span></a></li>--%>
+
+                                <li class="treeview">
+                                    <a href="#"><i class="fa fa-cogs"></i><span>Equipment</span>
+                                        <span class="pull-right-container">
+                                            <i class="fa fa-angle-left pull-right"></i>
+                                        </span>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li><a href="<%= ResolveUrl("~/EquipmentPanel/")%>"><i class="fa fa-cogs"></i><span>Equipment list</span></a></li>
+                                        <%-- <li><a href="<%= ResolveUrl("~/EquipmentPanel/EquipmentModels/")%>"><i class="fa fa-cogs"></i><span>Equipment models</span></a></li>--%>
+                                    </ul>
+                                </li>
+
+                                <li><a href="<%= ResolveUrl("~/Vendors/")%>"><i class="fa fa-building-o"></i><span>Vendors</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-bars"></i><span>Prefab Types</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="<%= ResolveUrl("~/PrefabTypes/Default.aspx?componentType=Anode")%>"><i class="fa fa-circle-o"></i><span>Anode</span></a></li>
+                                <li><a href="<%= ResolveUrl("~/PrefabTypes/Default.aspx?componentType=Cathode")%>"><i class="fa fa-circle-o"></i><span>Cathode</span></a></li>
+                                <li><a href="<%= ResolveUrl("~/PrefabTypes/Default.aspx?componentType=Separator")%>"><i class="fa fa-circle-o"></i><span>Separator</span></a></li>
+                                <li><a href="<%= ResolveUrl("~/PrefabTypes/Default.aspx?componentType=Electrolyte")%>"><i class="fa fa-circle-o"></i><span>Electrolyte</span></a></li>
+                                <li><a href="<%= ResolveUrl("~/PrefabTypes/Default.aspx?componentType=ReferenceElectrode")%>"><i class="fa fa-circle-o"></i><span>Reference Electrode</span></a></li>
+                                <li><a href="<%= ResolveUrl("~/PrefabTypes/Default.aspx?componentType=Casing")%>"><i class="fa fa-circle-o"></i><span>Casing</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-file-o"></i><span>Document Types</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="<%= ResolveUrl("~/DocumentTypes/")%>"><i class="fa fa-list"></i><span>Document Types list</span></a></li>
+                                <li><a href="<%= ResolveUrl("~/DocumentTypes/Insert")%>"><i class="fa fa-circle"></i><span>New Document Type</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-file-o"></i><span>Results</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="<%= ResolveUrl("~/GraphResults/Default")%>"><i class="fa fa-circle"></i><span>Test Results (Graphs)</span></a></li>
+                                <li><a href="<%= ResolveUrl("~/GraphResults/Upload")%>"><i class="fa fa-upload"></i><span>Upload documents</span></a></li>
+                            </ul>
+                        </li>
+                        <%-- <li class="treeview">                           
+                                <a href="<%= ResolveUrl("~/Experiments/PublicExperiments")%>"><i class="fa fa-share-alt"></i> Public Experiments</a>
+                        </li>--%>
+                    </ul>
+                    <!-- /.sidebar-menu -->
+
+                </section>
+
+                <!-- /.sidebar -->
+            </aside>
+
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper" id="lte-content-wrapper">
+
+                <!-- Main content -->
+                <section>
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                    </asp:ContentPlaceHolder>
+                </section>
+                <!-- /.content -->
+
+            </div>
+            <!-- /.content-wrapper -->
+
+            <!-- Main Footer -->
+            <footer class="main-footer text-center">
+                <!-- To the right -->
+                <!--
+                <div class="pull-right hidden-xs">
+                    Anything you want
+                </div>
+                -->
+                <!-- Default to the left -->
+                <strong>Copyright &copy; 2018.</strong> All rights reserved.
+            </footer>
+
+            <!-- Control Sidebar -->
+            <aside class="control-sidebar control-sidebar-dark">
+                <!-- Create the tabs -->
+                <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+                    <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+                    <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <!-- Home tab content -->
+                    <div class="tab-pane active" id="control-sidebar-home-tab">
+                        <h3 class="control-sidebar-heading">Recent Activity</h3>
+                        <ul class="control-sidebar-menu">
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+
+                                    <div class="menu-info">
+                                        <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+                                        <p>Will be 23 on April 24th</p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- /.control-sidebar-menu -->
+
+                        <h3 class="control-sidebar-heading">Tasks Progress</h3>
+                        <ul class="control-sidebar-menu">
+                            <li>
+                                <a href="javascript:;">
+                                    <h4 class="control-sidebar-subheading">Custom Template Design
+                                        <span class="pull-right-container">
+                                            <span class="label label-danger pull-right">70%</span>
+                                        </span>
+                                    </h4>
+
+                                    <div class="progress progress-xxs">
+                                        <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- /.control-sidebar-menu -->
+
+                    </div>
+                    <!-- /.tab-pane -->
+                    <!-- Stats tab content -->
+                    <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+                    <!-- /.tab-pane -->
+                    <!-- Settings tab content -->
+                    <div class="tab-pane" id="control-sidebar-settings-tab">
+                        <!--<form method="post">-->
+                        <h3 class="control-sidebar-heading">General Settings</h3>
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Report panel usage
+                                    <input type="checkbox" class="pull-right" checked>
+                            </label>
+                            <p>
+                                Some information about this general settings option
+                            </p>
+                        </div>
+                        <!-- /.form-group -->
+                        <!--</form>-->
+                    </div>
+                    <!-- /.tab-pane -->
+                </div>
+            </aside>
+            <!-- /.control-sidebar -->
+            <!-- Add the sidebar's background. This div must be placed
+                immediately after the control sidebar -->
+            <div class="control-sidebar-bg"></div>
+        </form>
+    </div>
+
+
+
+</body>
+</html>

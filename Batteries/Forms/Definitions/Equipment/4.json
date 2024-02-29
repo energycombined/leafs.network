@@ -1,0 +1,146 @@
+﻿{
+    "data": {
+    },
+    "schema": {
+        "type": "object",
+        "properties": {
+            "form_action": {
+                "type": "string",
+                "hidden": true
+            },
+            "form_element": {
+                "type": "string",
+                "hidden": true
+            },
+            "settingsId": {
+                "type": "integer",
+                "hidden": true,
+                "default": 0
+            },
+            "fkExperimentProcess": {
+                "title": "Experiment Process Id",
+                "type": "integer",
+                "hidden": true,
+                "default": 0
+            },
+            "fkBatchProcess": {
+                "title": "Batch Process Id",
+                "type": "integer",
+                "hidden": true,
+                "default": 0
+            },
+            "label": {
+                "title": "Personal label",
+                "type": "string"
+            },
+            "fkEquipmentModel": {
+                "title": "Equipment Model",
+                "type": "integer"
+            },
+            "tubeMaterial": {
+                "title": "Tube Material",
+                "type": "string"
+            },
+            "tubeDiameter": {
+                "title": "Tube Diameter (mm)",
+                "type": "number"
+            },
+            "tubeAmountOfOpenings": {
+                "title": "Tube Amount Of Openings",
+                "type": "integer"
+            },
+            "atmosphere": {
+                "title": "Atmosphere",
+                "type": "string"
+            },
+            "flow": {
+                "title": "flow",
+                "type": "boolean"
+            },
+            "rampUpTime": {
+                "title": "Ramp Up Time",
+                "type": "number"
+            },
+            "temperature": {
+                "title": "Temperature (degrees C)",
+                "type": "number"
+            },
+            "duration": {
+                "title": "Duration (minutes)",
+                "type": "number"
+            },
+            "rampDownTime": {
+                "title": "Ramp Down Time",
+                "type": "integer"
+            },
+            "loopCount": {
+                "title": "Loop Count",
+                "type": "number"
+            },
+            "comment": {
+                "title": "Comments",
+                "type": "string"
+            }
+        }
+    },
+    "options": {
+        "fields": {
+            "form_action": {
+                "type": "hidden"
+            },
+            "form_element": {
+                "type": "hidden"
+            },
+            "settingsId": {
+                "readonly": true
+            },
+            "fkExperimentProcess": {
+                "readonly": true
+            },
+            "fkBatchProcess": {
+                "readonly": true
+            },
+            "fkEquipmentModel": {
+                "type": "select",
+                "dataSource": "/DataSources/EquipmentModels.ashx?fresh=123&equipmentId=4",
+                "noneLabel": "-- Select --",
+                "validate": false
+            },
+            "tubeMaterial": {
+                "type": "text"
+            },
+            "tubeDiameter": {
+            },
+            "tubeAmountOfOpenings": {
+            },
+            "atmosphere": {
+                "type": "text"
+            },
+            "flow": {
+            },
+            "rampUpTime": {
+            },
+            "temperature": {
+            },
+            "duration": {
+            },
+            "rampDownTime": {
+            },
+            "loopCount": {
+            },
+            "comment": {
+                "type": "textarea"
+            }
+        },
+        "form": {
+            "attributes": {
+                "method": "post",
+                "action": "PostData.asmx/Submit"
+            }
+        }
+    },
+    "view": {
+        "parent": "bootstrap-edit",
+        "displayReadonly": false
+    }
+}

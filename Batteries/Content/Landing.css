@@ -1,0 +1,286 @@
+@font-face {
+  font-family: 'SF Compact Display';
+  src: url('../fonts/SF-Compact-Display-Ultralight.otf');
+  /*src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');*/
+}
+
+body {
+    /*background-color: #f2f2f2;*/
+    /*font-family: "Lato";
+    font-weight: 300;
+    font-size: 16px;
+    color: #555;*/
+    /*padding-top: 50px;*/
+
+    font-family: "SF Compact Display";
+    -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;
+    
+    background-image: linear-gradient(to right, #3499CC, #5FC5C0);
+    /*letter-spacing: 0.26em;*/
+}
+.loginBtn{
+    font-weight: 800;
+    width:140px;
+    height:50px;
+    font-size:20px;
+}
+a{
+    font-family: "SF Compact Display";
+}
+.content-wrapper{
+    background-color: transparent;
+}
+.main-header, .navbar-custom-menu, .nav, .navbar-nav, .nav a{
+    color: #fff;
+}
+header, nav, navbar-brand, div.navbar-header strong{
+    /*color: #555;*/
+}
+a.navbar-brand{
+    padding: 5px 0px 0px 0px !important;
+    /*padding: 0px !important;*/
+}
+.nav.navbar-nav li:hover, .nav.navbar-nav a:hover{
+    background-color: transparent;
+    color: #fff;
+}
+.nav.navbar-nav li:focus, .nav.navbar-nav a:focus{
+    background-color: transparent;
+    color: #fff;
+}
+
+/* Titles */
+h1, h2, h3, h4, h5, h6 {
+    /*font-family: "Raleway";*/
+    font-weight: 300;
+    color: #333;
+}
+
+/* Paragraph & Typographic */
+p {
+    line-height: 28px;
+    margin-bottom: 25px;
+}
+
+.centered {
+    text-align: center;
+}
+
+/* Links */
+a {
+    /*color: #3bc492;*/
+    /*color: #555;*/
+    word-wrap: break-word;
+
+    -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -o-transition: color 0.1s ease-in, background 0.1s ease-in;
+    transition: color 0.1s ease-in, background 0.1s ease-in;
+}
+
+a:hover,
+a:focus {
+    color: #c0392b;
+    text-decoration: none;
+    outline: 0;
+}
+
+a:before,
+a:after {
+    -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -o-transition: color 0.1s ease-in, background 0.1s ease-in;
+    transition: color 0.1s ease-in, background 0.1s ease-in;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+
+/* ==========================================================================
+   Wrap Sections
+   ========================================================================== */
+
+#headerwrap {
+    /*background-color: #34495e;*/
+    /*background-color: #39495a;*/
+    /*background-color: #43505C;*/
+    /*padding-top: 60px;*/
+
+    /*previously used*/
+    /*border-top: #bdc3c7 solid 5px;
+    background-color: #4A5865;    
+    border-bottom: #bdc3c7 solid 5px;
+    padding-top: 250px;*/
+}
+
+#headerwrap h1 {
+    margin-top: 30px;
+    color: white;
+    font-size: 70px;
+}
+
+#headerwrap h3 {
+    color: white;
+    font-size: 30px;
+}
+
+#headerwrap h5 {
+    color: white;
+    font-weight: 700;
+    text-align: left;
+}
+
+#headerwrap p {
+    text-align: left;
+    color: white
+}
+
+/*NOVO*/
+#headerwrap-background{
+    /*background-color: #34495e;*/
+    /*background-color: rgb(177, 177, 177);*/
+     /*background-image: linear-gradient(red, orange);*/
+    /*background-image: url('../img/design-img/coffee-travel-drawings-round-dish.png');*/
+    /*background-size: 100%;*/
+    /*background-size: cover;*/
+    /*background-repeat: no-repeat;*/
+    /*background-repeat: repeat-x;*/
+    /*background-position-x: 50%;*/
+
+
+    /*background-image: url('../img/chemistry3.jpg');
+    background-position: 50% 0%;
+    background-size: auto 650px;*/
+
+}
+.headerwrap-overlay{
+    /*background: rgba(52, 73, 94, 0.7);*/
+    /*background: rgba(76,83,90, 0.7);*/
+    /*background: rgba(86,92,99, 0.7);*/
+    /*background: rgba(57,73,90, 0.7);*/ 
+
+
+    /*background: rgba(130,142,152, 0.7);*/
+
+}
+#headerwrap-new {
+    /*background-color: #34495e;*/
+    /*min-height: 700px;*/
+    /*padding-top: 60px;*/
+
+    /*min-height: 500px;
+    padding-top: 110px;
+    border-top: #bdc3c7 solid 5px;*/
+       
+}
+#headerwrap-new .container{
+    /*background-image: url('../img/logo_white.png');
+    background-position: 50% 0%;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    min-height: 800px;*/
+}
+#headerwrap-new img{
+    width: 50%;
+    max-width: 500px;
+    height: auto;
+}
+
+#headerwrap-new h1 {
+    margin-top: 30px;
+    color: white;
+    font-size: 70px;
+}
+
+#headerwrap-new h3 {
+    color: white;
+    font-size: 30px;
+}
+
+#headerwrap-new h5 {
+    color: white;
+    font-weight: 700;
+    text-align: left;
+}
+
+#headerwrap-new p {
+    text-align: left;
+    color: white
+}
+
+
+/* intro Wrap */
+
+#intro {
+    padding-top: 50px;
+    border-top: #bdc3c7 solid 5px;
+}
+
+#features {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#features .ac a{
+    font-size: 20px;
+}
+
+/* Showcase Wrap */
+
+#showcase {
+    display: block;
+    background-color: #34495e;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#showcase h1 {
+    color: white;
+}
+
+.main-footer{
+    background-color: transparent;
+    border: none;
+    color: #fff;
+}
+#footerwrap {
+    background-color: #2f2f2f;
+    color: white;
+    padding-top: 40px;
+    padding-bottom: 60px;
+    text-align: left;
+}
+
+#footerwrap h3 {
+    font-size: 28px;
+    color: white;
+}
+
+#footerwrap p {
+    color: white;
+    font-size: 18px;
+}
+
+/* Copyright Wrap */
+
+#c {
+    background: #222222;
+    padding-top: 15px;
+    text-align: center;
+}
+
+#c p {
+    color: white
+}
+

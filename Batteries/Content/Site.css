@@ -1,0 +1,170 @@
+﻿.sidebar-mini.sidebar-collapse .main-header .logo > .logo-mini {
+    /*font-size: 14px;*/
+}
+
+.col-margin .col-xs-1, .col-margin .col-sm-1, .col-margin .col-md-1, .col-margin .col-lg-1, .col-margin .col-xs-2, .col-margin .col-sm-2, .col-margin .col-md-2, .col-margin .col-lg-2, .col-margin .col-xs-3, .col-margin .col-sm-3, .col-margin .col-md-3, .col-margin .col-lg-3, .col-margin .col-xs-4, .col-margin .col-sm-4, .col-margin .col-md-4, .col-margin .col-lg-4, .col-margin .col-xs-5, .col-margin .col-sm-5, .col-margin .col-md-5, .col-margin .col-lg-5, .col-margin .col-xs-6, .col-margin .col-sm-6, .col-margin .col-md-6, .col-margin .col-lg-6, .col-margin .col-xs-7, .col-margin .col-sm-7, .col-margin .col-md-7, .col-margin .col-lg-7, .col-margin .col-xs-8, .col-margin .col-sm-8, .col-margin .col-md-8, .col-margin .col-lg-8, .col-margin .col-xs-9, .col-margin .col-sm-9, .col-margin .col-md-9, .col-margin .col-lg-9, .col-margin .col-xs-10, .col-margin .col-sm-10, .col-margin .col-md-10, .col-margin .col-lg-10, .col-margin .col-xs-11, .col-margin .col-sm-11, .col-margin .col-md-11, .col-margin .col-lg-11, .col-margin .col-xs-12, .col-margin .col-sm-12, .col-margin .col-md-12, .col-margin .col-lg-12 {
+    margin: 3px 0;
+}
+
+.bg-grey {
+    background-color: #CCCCCC !important;
+}
+
+
+table.materialsAndBatchesTable > tbody > tr > td,
+table.materialsAndBatchesTable > tfoot > tr > td,
+table.materialsAndBatchesTable > tfoot > tr > th,
+table.materialsAndBatchesTable > tr > td,
+table.processesTable > tbody > tr > td,
+table.processesTable > tfoot > tr > td,
+table.processesTable > tfoot > tr > th,
+table.processesTable > tr > td {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+table.materialsAndBatchesTable > tbody > tr > th,
+table.materialsAndBatchesTable > thead > tr > th,
+table.processesTable > tbody > tr > th,
+table.processesTable > thead > tr > th {
+    padding: 5px;
+}
+
+table.materialsAndBatchesTable input,
+table.materialsAndBatchesTable button,
+table.processesTable input,
+table.processesTable button {
+    line-height: initial;
+}
+
+.stepButtons {
+    display: inline-block;
+    padding-left: 10px;
+}
+
+.boxButtons {
+    padding-right: 20px;
+}
+
+
+
+/*DRAG DROP sortable*/
+.js-handle {
+    color: gray;
+    border-color: #ddd;
+    border-radius: 3px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 1px solid transparent;
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    background-color: #f4f4f4;
+    display: inline-block;
+    text-align: center;
+    touch-action: manipulation;
+    vertical-align: middle;
+}
+
+    .js-handle:hover {
+        cursor: move; /* fallback if grab cursor is unsupported */
+        cursor: grab;
+        cursor: -moz-grab;
+        cursor: -webkit-grab;
+    }
+
+    .js-handle:active {
+        cursor: grabbing;
+        cursor: -moz-grabbing;
+        cursor: -webkit-grabbing;
+    }
+/*.sortable-dragging{
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}*/
+
+
+.moveColumn {
+    width: 25px;
+}
+
+.lastSave {
+    margin-right: 5px;
+    display: none;
+}
+
+.text-white {
+    color: white;
+}
+
+/*jquery validate*/
+.form-group.error .form-control, .form-group.error .input-group-addon {
+    border-color: #dd4b39;
+    box-shadow: none;
+}
+
+.form-control.error {
+    border-color: #dd4b39;
+    box-shadow: none;
+}
+
+label.error {
+    color: #dd4b39;
+}
+
+.btnNew {
+    width: 5px !important;
+    height: 23px !important;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: inherit;
+    margin: 1px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rotate_01 {
+    -webkit-transition: -webkit-transform 3s;
+}
+
+    .rotate_01:hover {
+        -webkit-transform: rotate(-360deg) translateZ(0);
+    }
+
+.rotate_02 {
+    -webkit-animation: spin 4s linear infinite;
+    -moz-animation: spin 4s linear infinite;
+    animation: spin 4s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    100% {
+        -webkit-transform: rotateY(360deg);
+    }
+}
+
+.removeChild {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.childNodes {
+    /*padding-left:35px;*/
+}
+
+.duplicateChildBtn {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+}
+
+.childrenDiv :hover {
+}
+
+.chartContainer {
+    min-height: 500px;
+}

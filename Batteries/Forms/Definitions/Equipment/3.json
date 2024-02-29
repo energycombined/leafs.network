@@ -1,0 +1,133 @@
+﻿{
+    "data": {
+    },
+    "schema": {
+        "type": "object",
+        "properties": {
+            "form_action": {
+                "type": "string",
+                "hidden": true
+            },
+            "form_element": {
+                "type": "string",
+                "hidden": true
+            },
+            "settingsId": {
+                "type": "integer",
+                "hidden": true,
+                "default": 0
+            },
+            "fkExperimentProcess": {
+                "title": "Experiment Process Id",
+                "type": "integer",
+                "hidden": true,
+                "default": 0
+            },
+            "fkBatchProcess": {
+                "title": "Batch Process Id",
+                "type": "integer",
+                "hidden": true,
+                "default": 0
+            },
+            "label": {
+                "title": "Personal label",
+                "type": "string"
+            },
+            "fkEquipmentModel": {
+                "title": "Equipment Model",
+                "type": "integer"
+            },
+            "temperature": {
+                "title": "Temperature (degrees C)",
+                "type": "number"
+            },
+            "heatingTime": {
+                "title": "Heating Time (minutes)",
+                "type": "number"
+            },
+            "stirring": {
+                "title": "Stirring",
+                "type": "boolean"
+            },
+            "stirringSpeed": {
+                "title": "Stirring Speed (rpm)",
+                "type": "number"
+            },
+            "stirBarSize": {
+                "title": "Stir Bar Size (mm)",
+                "type": "number"
+            },
+            "atmosphere": {
+                "title": "Atmosphere",
+                "type": "string"
+            },
+            "flow": {
+                "title": "Flow",
+                "type": "boolean"
+            },
+            "flowRate": {
+                "title": "Flow Rate (m3/min)",
+                "type": "number"
+            },
+            "comment": {
+                "title": "Comments",
+                "type": "string"
+            }           
+        }
+    },
+    "options": {
+        "fields": {
+            "form_action": {
+                "type": "hidden"
+            },
+            "form_element": {
+                "type": "hidden"
+            },
+            "settingsId": {
+                "readonly": true
+            },
+            "fkExperimentProcess": {
+                "readonly": true
+            },
+            "fkBatchProcess": {
+                "readonly": true
+            },
+            "fkEquipmentModel": {
+                "type": "select",
+                "dataSource": "/DataSources/EquipmentModels.ashx?fresh=123&equipmentId=3",
+                "noneLabel": "-- Select --",
+                "validate": false
+            },
+            "temperature": {
+            },
+            "heatingTime": {
+            },
+            "stirring": {
+            },
+            "stirringSpeed": {
+            },
+            "stirBarSize": {
+            },
+            "atmosphere": {
+                "type": "text"
+            },
+            "flow": {
+            },
+            "flowRate": {
+            },
+            "comment": {
+                "type": "textarea"
+            }
+        },
+        "form": {
+            "attributes": {
+                "method": "post",
+                "action": "PostData.asmx/Submit"
+            }
+        }
+    },
+    "view": {
+        "parent": "bootstrap-edit",
+        "displayReadonly": false
+    }
+}

@@ -1,0 +1,112 @@
+﻿{
+    "data": {
+    },
+    "schema": {
+        "type": "object",
+        "properties": {
+            "form_action": {
+                "type": "string",
+                "hidden": true
+            },
+            "form_element": {
+                "type": "string",
+                "hidden": true
+            },
+            "measurementsId": {
+                "type": "integer",
+                "hidden": true,
+                "default": 0
+            },
+            "fkMeasurementLevelType": {
+                "type": "integer",
+                "hidden": true
+            },
+            "fkExperiment": {
+                "type": "integer",
+                "hidden": true
+            },
+            "fkBatch": {
+                "type": "integer",
+                "hidden": true
+            },
+            "fkBatteryComponentType": {
+                "type": "integer",
+                "hidden": true
+            },
+            "stepId": {
+                "type": "integer",
+                "hidden": true
+            },
+            "fkBatteryComponentContent": {
+                "type": "integer",
+                "hidden": true
+            },
+            "measuredTime": {
+                "title": "Measured Time (seconds)",
+                "type": "number"
+            },
+            "measuredWidth": {
+                "title": "Measured Width (mm)",
+                "type": "number"
+            },
+            "measuredLength": {
+                "title": "Measured Length (mm)",
+                "type": "number"
+            },
+            "measuredConductivity": {
+                "title": "Measured Conductivity (Ω/m)",
+                "type": "number"
+            },
+            "measuredThickness": {
+                "title": "Measured Thickness (mm)",
+                "type": "number"
+            },
+            "measuredWeight": {
+                "title": "Measured Weight (g)",
+                "type": "number"
+            }
+        }
+    },
+    "options": {
+        "fields": {
+            "form_action": {
+                "type": "hidden"
+            },
+            "form_element": {
+                "type": "hidden"
+            },
+            "measurementsId": {
+                "readonly": true
+            },
+            "fkMeasurementLevelType": {
+                "readonly": true
+            },
+            "fkExperiment": {
+                "readonly": true
+            },
+            "fkBatch": {
+                "readonly": true
+            },
+            "fkBatteryComponentType": {
+                "readonly": true
+            },
+            "stepId": {
+                "readonly": true
+            },
+            "fkBatteryComponentContent": {
+                "readonly": true
+            }
+
+        },
+        "form": {
+            "attributes": {
+                "method": "post",
+                "action": "PostData.asmx/Submit"
+            }
+        }
+    },
+    "view": {
+        "parent": "bootstrap-edit",
+        "displayReadonly": false
+    }
+}
